@@ -108,8 +108,7 @@ function App() {
         <p>
           Only change <code>Connector Component</code>:
         </p>
-        {/* memo 的返回值会作为 useMemo 的第二个参数 */}
-        <Connector memo={state => [state.num]}>
+        <Connector>
           {({ num }) => {
             console.log('此组件会被重复渲染');
             return <p>{num}</p>;
