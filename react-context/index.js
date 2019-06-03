@@ -1,12 +1,12 @@
 import React, { createContext, useMemo, useContext } from 'react';
 import immer from 'immer';
 
-export default function createContextRedux() {
+export default function createContextRedux(initalState = {}) {
   // 创建一个  context, 用于后续配合 useContext 进行更新组件
   const store = createContext();
 
   // 创建一个提供者组件
-  const Provider = ({ defaultState = {}, ...rest }) => {
+  const Provider = ({ defaultState = initalState, ...rest }) => {
     const [state, setState] = React.useState(defaultState);
 
     // 仅有 state 变更了, 才会重新更新 context 和 store
