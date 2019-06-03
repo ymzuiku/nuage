@@ -128,7 +128,6 @@ function App() {
     </div>
   );
 }
-
 render(
   <Provider>
     <App />
