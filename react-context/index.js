@@ -1,4 +1,4 @@
-import React, { createContext, useMemo } from 'react';
+import React, { createContext, useMemo, useContext } from 'react';
 import immer from 'immer';
 
 export default function createContextRedux() {
@@ -18,8 +18,25 @@ export default function createContextRedux() {
       store.dispatch = dispatch;
 
       return <store.Provider value={state} {...rest} />;
+      // eslint-disable-next-line
     }, [state]);
   };
 
-  return { Provider, store };
+  const Connector = ({ children, memo, ...rest }) => {
+    const state = useContext(store);
+
+    // 使用外部控制 memo
+    if (typeof memo === 'function') {
+      const memoList = memo(state);
+      // eslint-disable-next-line
+      return useMemo(() => {
+        return children(state, store.dispatch);
+        // eslint-disable-next-line
+      }, memoList);
+    } else {
+      return children(state, store.dispatch);
+    }
+  };
+
+  return { Provider, store, Connector };
 }
