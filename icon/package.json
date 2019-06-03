@@ -1,0 +1,7 @@
+{
+  "name": "@nuage/icon",
+  "version": "0.0.3",
+  "main": "index.js",
+  "description": "兼容iconfont的font图标和svg图标",
+  "author": "pillar"
+}
