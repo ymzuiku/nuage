@@ -93,34 +93,33 @@ Flutter 问世之后，有许多状态管理方案，其中就包含 Redux 风�
 Connector 是在 react-context 的基础上进行简单的，通过 renderProps 的方式控制渲染子组件
 
 ```js
-import './index.css';
 import React from 'react';
 import { render } from 'react-dom';
 import createReactContext from './react-context';
 
-const { Provider, Connector, store } = createReactContext();
+const { Provider, Connector, store } = createReactContext({ num: 0 });
 
 function App() {
   console.log('整个组件只会渲染一次');
 
   return (
-    <div className="App">
-      <header className="App-header">
+    <div>
+      <header>
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Only change <code>Connector Component</code>:
         </p>
-        <Connector>
+        {/* memo 的返回值会作为 useMemo 的第二个参数 */}
+        <Connector memo={state => [state.num]}>
           {({ num }) => {
-            console.log('此局部组件会被重复渲染');
+            console.log('此组件会被重复渲染');
             return <p>{num}</p>;
           }}
         </Connector>
 
         <button
           onClick={() => {
-            // 发起一个dispatch
             store.dispatch(state => {
-              state.num = state.num ? state.num + 1 : 1;
+              state.num += 1;
             });
           }}
         >
