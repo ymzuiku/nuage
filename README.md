@@ -19,3 +19,11 @@
 ## react-class-theme
 
 基于 css3 value 的样式基础
+
+## use-component-resize
+
+用于自适应根据父容器的尺寸来设置 width 和 height
+
+## use
+
+一个代替 react-router.Redirect 的 hooks

@@ -1,0 +1,7 @@
+{
+  "name": "@nuage/use-redirect",
+  "version": "0.0.2",
+  "author": "pillar",
+  "private": false,
+  "main": "index.js"
+}
