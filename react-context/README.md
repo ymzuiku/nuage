@@ -89,16 +89,16 @@ render(<App />, document.getElementById('root'));
 
 ## 局部更新
 
-Flutter 问世之后，有许多状态管理方案，其中就包含 Redux 风格的方案。Flutter 的 Provider 及 flutter_redux 两个状态管理库中，都使用了一个局部更新的方式来控制重绘区域，此库根据其思路也实现了一个局部的 Connector 组件供君使用。
+Flutter 问世之后，有许多状态管理方案，其中就包含 Redux 风格的方案。Flutter 的 Provider 及 flutter_redux 两个状态管理库中，都使用了一个局部更新的方式来控制重绘区域，此库根据其思路也实现了一个局部的 Consumer 组件供君使用。
 
-Connector 是在 react-context 的基础上进行简单的，通过 renderProps 的方式控制渲染子组件
+Consumer 和 context.Consumer 作用相同，唯一的区别仅仅是 Consumer 可以配合 useMemo 进行更新拦截
 
 ```js
 import React from 'react';
 import { render } from 'react-dom';
 import createReactContext from './react-context';
 
-const { Provider, Connector, store } = createReactContext({ num: 0 });
+const { Provider, Consumer, store } = createReactContext({ num: 0 });
 
 function App() {
   console.log('整个组件只会渲染一次');
@@ -109,12 +109,12 @@ function App() {
         <p>
           Only change <code>Connector Component</code>:
         </p>
-        <Connector>
+        <Consumer>
           {({ num }) => {
             console.log('此组件会被重复渲染');
             return <p>{num}</p>;
           }}
-        </Connector>
+        </Consumer>
 
         <button
           onClick={() => {
@@ -144,11 +144,11 @@ render(
 下面的例子，子组件只有当 state.num 改变了才会重绘，其他属性的修改会被拦截
 
 ```js
-<Connector memo={state => [state.num]}>
+<Consumer memo={state => [state.num]}>
   {({ num }) => {
     return <p>{num}</p>;
   }}
-</Connector>
+</Consumer>
 ```
 
 ## 异步更新
