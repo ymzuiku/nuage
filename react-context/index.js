@@ -22,7 +22,7 @@ export default function createContextRedux(initalState = {}) {
     }, [state]);
   };
 
-  const Connector = ({ children, memo, ...rest }) => {
+  const Consumer = ({ children, memo, ...rest }) => {
     const state = useContext(store);
 
     // 使用外部控制 memo
@@ -38,5 +38,5 @@ export default function createContextRedux(initalState = {}) {
     }
   };
 
-  return { Provider, store, Connector };
+  return { Provider, store, Consumer };
 }

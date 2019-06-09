@@ -107,7 +107,7 @@ function App() {
     <div>
       <header>
         <p>
-          Only change <code>Connector Component</code>:
+          Only change <code>Consumer Component</code>:
         </p>
         <Consumer>
           {({ num }) => {
