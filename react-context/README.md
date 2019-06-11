@@ -1,3 +1,7 @@
+# **注意**, 请使用 [@nuage/react-consumer](https://github.com/ymzuiku/react-consumer) 代替此库
+
+> **注意**, 请使用 [@nuage/react-consumer](https://github.com/ymzuiku/react-consumer) 代替此库
+
 # 基于 hooks, context, immer 的 Redux 实现
 
 ## Feature
